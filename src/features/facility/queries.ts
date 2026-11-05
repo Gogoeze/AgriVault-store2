@@ -130,10 +130,13 @@ export function useDevices() {
       const snapshot = await getDocs(
         query(collection(db, COLLECTIONS.devices), orderBy("deviceId")),
       )
-      return snapshot.docs.map((row) => fromSnapshot<Device>(row))
+       return snapshot.docs
+   .map((row) => fromSnapshot<Device>(row))
+   .filter((d) => !STORE_ID || d.deviceId === STORE_ID)
     },
   })
 }
+
 
 /* -- Produce --------------------------------------------------------------- */
 
@@ -223,3 +226,5 @@ export function useFacilityOverview() {
     },
   })
 }
+
+const STORE_ID = import.meta.env.VITE_STORE_ID as string | undefined

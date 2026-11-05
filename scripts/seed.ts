@@ -231,10 +231,10 @@ for (const unit of UNITS) {
 console.log(`  ${UNITS.length} cold rooms`)
 
 // device-id must match the node the rig writes in the Realtime Database
-// (onionStorageId). Only store_001 exists on the pilot rig today.
-await db.collection("devices").doc("store_001").set(
+// (onionStorageId). Only store_002 exists on the pilot rig today.
+await db.collection("devices").doc("store_002").set(
   {
-    deviceId: "store_001",
+    deviceId: "store_002",
     unitId: "unit-1",
     unitCode: "U-1",
     online: false,
@@ -243,7 +243,7 @@ await db.collection("devices").doc("store_001").set(
   },
   { merge: true },
 )
-console.log("  1 device (store_001 → U-1)")
+console.log("  1 device (store_002 → U-1)")
 
 console.log("\nCounters")
 await db.collection("counters").doc("ST").set({ value: 500 }, { merge: true })
